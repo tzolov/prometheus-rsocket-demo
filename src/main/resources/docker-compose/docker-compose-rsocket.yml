@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+
+#  grafana:
+#    image: springcloud/spring-cloud-dataflow-grafana-prometheus:${DATAFLOW_VERSION}
+#    container_name: grafana
+#    ports:
+      - '3000:3000'
+
+  prometheus:
+    image: springcloud/spring-cloud-dataflow-prometheus-local:rsocket
+    container_name: prometheus
+    volumes:
+      - 'scdf-targets:/etc/prometheus/'
+    ports:
+      - '9090:9090'
+
+  prometheus-rsocket-proxy:
+    image: io.micrometer.publishing/prometheus-rsocket-proxy:0.8.0-snapshot
+    container_name: prometheus-rsocket-proxy
+    expose:
+      - '9096'
+      - '7001'
+      - '8081'
+    ports:
+      - '9096:9096'
+      - '7001:7001'
+      - '8081:8081'
+    environment:
+      - server.port=9096
+
+volumes:
+  scdf-targets:

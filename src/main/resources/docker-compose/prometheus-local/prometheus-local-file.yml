@@ -1,0 +1,22 @@
+global:
+  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+# A scrape configuration containing exactly one endpoint to scrape:
+scrape_configs:
+  - job_name: 'local-rsocket-proxy'
+
+    scrape_interval: 10s
+    scrape_timeout: 9s
+    metrics_path: '/metrics/proxy'
+    static_configs:
+      - targets: ['prometheus-rsocket-proxy:9096']
+
+  - job_name: 'local-rsocket-connected'
+
+    scrape_interval: 10s
+    scrape_timeout: 9s
+    metrics_path: '/metrics/connected'
+    static_configs:
+      - targets: ['prometheus-rsocket-proxy:9096']
