@@ -2,12 +2,6 @@
 
 #### Docker Env
 
-* Build the `io.micrometer.publishing/prometheus-rsocket-proxy:0.8.0-snapshot` image locally from the `prometheus-rsocket-proxy` project:
-
-```
-./gradlew build docker 
-```
-
 * Build the `springcloud/spring-cloud-dataflow-prometheus-local:rsocket` image locally.
 
 Change directory to `src/main/resources/docker-compose/prometheus-local` and run:
@@ -23,3 +17,7 @@ Change directory to `src/main/resources/docker-compose/` and run:
 ```
 docker-compose -f ./docker-compose-rsocket.yml up
 ```
+
+* Run the Demo application
+
+Run the Java main for `PrometheusRsocketDemoApplication` in the IDE or with `java -jar target/prometheus-rsocket-demo-0.0.1-SNAPSHOT` on the built project from the project root directory.
